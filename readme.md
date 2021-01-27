@@ -1,65 +1,89 @@
-# Project Plan
+Original project plan can be found here
+Working App in Heroku can be found [here](https://mostawesomegames.herokuapp.com/home/)
 
 ## 1. Team Members
-* Sergei Kaukiainen 586773
-* Aapo Linjama 587895
-* Oskari Mäkinen 477510
+* Sergei Kaukiainen 
+* Aapo Linjama 
+* Oskari Mäkinen 
 
-## 2. Features
+## 2. My workload in this project
+* Web site appearance
+* Contributing to the software architecture design, database design and basic functionalities
+* Appearance and mechanism for highscores
+* Email verification
+* 3rd party login
+* Heroku deployment
+
+## 3. Features
 * Authentication - register, login, logout
 * Buying games - via mockup payment service
+* Basic user and developer functionalities
+* Payment - external Simple Payments service
 * Search for games and filtering by category
 * Adding games 
-* Game/Service interaction - highscores, (saving/loading?)
-* Security - players can only play games that they have purchased, only developers are allowed to make changes in their game, secure from injection attacks etc.
+* Game/Service interaction - highscores, (saving/loading)
+* Security - players can only play games that they have purchased, only developers are allowed to       make changes in their game, secure from injection attacks etc.
 * Statistics - what games have been bought and when
+* 3rd party login - signing with google account
+* RESTful API
 
-## 3. Extra Features
-First we plan to concentrate on mandatory features which are listed in the previous section and after that on the extra features that are listed in the project description. Outside those we are not planning to implement anything extra.
+## 4. Instructions
+When testing our app locally:
+1. Firstly install these:
+```
+ pip install six
+ pip install django-allauth
+ pip install djangorestframework
+```
+And you need 
+```
+ Python 3.6 or newer
+ Django 3.0.2
+``` 
 
-## 4. Implementation plan for features
-* Authentication - Implemented with Django auth
-* Payment - external Simple Payments service
-* Search and filtering categories - different database queries
-* Security - Heroku provides HTTPS, avoiding vulnerabilities in web page inputs (SQL-injection), clean up HTML before using (Cross-site scripting) this is provided mostly by Heroku
-* URLs - Python module (Django) which maps URL path expressions to Python functions (Django views)
-* Adding games - URL to a file which contains HTML and links to JavaScript files. Game is shown to players via iframe
-* Requests - Are handled in views (Django) which fetch objects from the database, modify those objects if needed, render forms, return HTML etc. and return web responses
-* Game/Service interaction - done via Ajax calls
-* Statistics - combination of basic database (SQL) and JavaScript/Python
+2. Create admin (superuser) for app and add necessary settings for 3rd party login
+- Note: For the deployed app use the domain instead of localhost
 
-## 5. Plan of Working
-At first we plan to work remotely until 15.01. and after that meet face-to-face at least once a week. We plan to do implementation at home and discuss general planning and decisions during the meetings.
+- In the project root folder is a text file called gmail.txt where you will find Client
+ID and Client Secret -key. You need to add these to admin page in order 3rd
+party login (gmail login) to work.
 
-## 6. Models We Plan to Use
-* User (Provided by Django)
-* Game
-   - id
-   - developerID
-   - name
-   - link
-   - price
-* GamePurchase
-   - gameID
-   - userID
-   - date
-* Score
-   - gameID
-   - userID
-   - date
-   - score
+- In admin page first go to sites -> click example.com and change Domain
+name to “localhost:8000” and Display name to whatever you want (for
+example “Gmail login”). Save changes.
 
-## 7. Timetable
-* 2.1. Begin implementation
-  - Work remotely until 15.1.
-  - Set up Django project
-  - Make skeleton for website
-  - Create initial models
-  - Create views
-  - Authentication
-  - Implement player UI
-  - Implement developer UI
-* 10.2. All mandatory requirements implemented
-  - Implement extra features
-* 14.2. Final deadline
-# Awesome-Games-Shop
+- Then in admin home page go to Social applications -> “Add social
+application”. New page will open after this. Choose from Provider drop menu
+“Google”, name application as you want and from gmail.txt file add Client id
+and Secret key. Lastly in Sites, move “localhost:8000” from Available sites to
+Chosen sites. Save changes and you are good to go with the app.
+
+- In the admin page you can also add a profile for your superuser (player or
+developer). You need to create a devProfile if you want to add games and
+receive payments.
+
+- To add our test game to the service use
+https://localhost:8000/play/test_game2/ as the source url
+
+3. In the web app when you create a new account you will need to verify your account
+via a link that is sent to your email. Since we are using Django’s email backend, you
+will find this link in the console. You can also activate a user’s account in the admin
+page.
+
+**When testing in Heroku:**
+Link to Heroku: https://mostawesomegames.herokuapp.com/home/
+
+For testing purposes we have created one superuser and one developer account to which
+we added given example game. Login infos:
+- Superuser:
+   - Username: admin
+   - Password: salasana1234
+- Developer account:
+   - Username: dev
+   - Password: salasana1234
+   
+- If you want to add additional developers to the deployed app, create a player user
+and then create a DevProfile and Profile for the user through django admin. (Since
+the verification email is sent to console backend)
+
+
