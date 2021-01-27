@@ -1,0 +1,7 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+    <div>Thanks for your purchase!</div>
+    <div>Go to <a href="{% url 'game-detail' game.pk %}">{{ game.name }}</a></div>
+
+{% endblock content%}

@@ -1,0 +1,13 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+    <div>
+        <form method="POST">
+            {% csrf_token %} <!--Required to prevent cross-site request forgery-->
+            {{ form.as_p }}
+            <div>
+                <button type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+{% endblock content%}

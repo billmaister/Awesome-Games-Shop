@@ -1,0 +1,50 @@
+{% extends "shop/base.html" %}
+
+
+{% block content %}
+<body>
+
+
+  <div class="tab">
+    {% for game in games%}
+    <button class="tablinks" onclick="openGame(event, '{{game.name}}')" id="defaultOpen">
+      {{game.name}}</button>
+    {% endfor %}
+  </div>
+
+{% for game in games%}
+  <div id="{{game.name}}" class="tabcontent">
+    <ol>
+        {% for scores in score %}
+
+          {% if game.name == scores.game.name %}
+
+            <li> User: {{scores.user.username}} highscore: {{scores.highscore}}</li>
+          {% endif %}
+
+    {% endfor %}
+    </ol>
+  </div>
+{% endfor %}
+
+
+<script type="text/javascript">
+function openGame(evt, gameName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(gameName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+</body>
+{% endblock content%}

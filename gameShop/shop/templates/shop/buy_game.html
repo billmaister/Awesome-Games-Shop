@@ -1,0 +1,13 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+    <h2>Buy this game:</h2>
+
+    <div>Name: {{ game.name }}</div>
+    <div>Amount: {{ game.price }} €</div>
+    <div>
+        <a href="{% url 'game-list' %}">Cancel</a>
+        <a href="{% url 'buy-game' game.pk %}">Buy now</a>
+    </div>
+
+{% endblock content%}

@@ -1,0 +1,43 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+<style>
+  #bordered1 {
+    width: 500px;
+    height: 500px;
+    padding: 25px;
+    background-color: tomato;
+  }
+
+  #bordered2 {
+    width: 500px;
+    height: 500px;
+    padding: 25px;
+    background-color: turquoise;
+  }
+
+  a.bordered {
+    font-weight: bold;
+    color: white;
+    text-align: justify;
+    font-size:35px;
+  }
+
+
+
+</style>
+
+<div style="text-align:center">
+    <h2>Let's create an account! Are you a..</h2><br><br><br><br>
+    <a class="bordered" id="bordered1" href="{% url 'register' 'player' %}" >PLAYER</a><br><br><br>
+    <h3>You can also use your Gmail account for creating player account..</h3><br><br><br>
+    <a class="bordered" id="bordered2" href="{% provider_login_url 'google' %}" >SIGN UP WITH GOOGLE</a><br><br><br><br>
+    <h2> Or a...</h2><br><br><br>
+    <a class="bordered" id="bordered1" href="{% url 'register' 'developer' %}">DEVELOPER</a><br><br>
+</div>
+
+
+{% endblock content%}

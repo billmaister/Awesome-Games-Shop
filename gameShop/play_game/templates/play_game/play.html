@@ -1,0 +1,19 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block content %}
+  <section id="game_header">
+    <h5>Now playing:</h5>
+    <h1>{{ game.name }}</h1>
+  </section>
+  <iframe id="game_iframe" src= '{{ game.source }}' width = 500px height = 500px
+    save_url="{% url 'save' game.pk %}"
+    load_url="{% url 'load' game.pk %}"
+    score_url="{% url 'submit-score' game.pk %}"></iframe>
+{% endblock content %}
+    
+{% block scripts %}
+  <script src="{% static 'play_game/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'play_game/communicate.js' %}"></script>
+{% endblock scripts %}
+

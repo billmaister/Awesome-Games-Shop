@@ -1,0 +1,14 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+  <div class="body">
+    <section id="content1">
+      {% if user.is_authenticated %}
+        <div>You are signed in as {{ user.username }}</div>
+      {% else %}
+        <div>You are not signed in</div>
+      {% endif %}
+      <br> <h2>Welcome to Most Awesome Games, home of the best games in the world!</h2>
+    </section>
+  </div>
+{% endblock content %}

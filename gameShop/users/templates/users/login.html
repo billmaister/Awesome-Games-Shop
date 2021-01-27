@@ -1,0 +1,42 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+<style>
+
+  .bordered {
+    width: 200px;
+    height: 200px;
+    padding: 15px;
+    background-color: red;
+  }
+  a.bordered {
+    font-weight: bold;
+    color: white;
+    text-align: justify;
+    font-size:15px;
+  }
+
+</style>
+
+    <form method="POST">
+        {% csrf_token %} <!--Required to prevent cross-site request forgery-->
+        {{ form.as_p }}
+        <div>
+            <button type="submit">Log In</button>
+        </div>
+    </form>
+
+    <div>
+        Don't have an account yet?
+        <a href="{% url 'pre-register' %}">Register</a>
+    </div>
+
+    <br><br>
+    <div>
+    <h3>Or you can use Gmail to log in</h3>
+    <a class="bordered" href="{% provider_login_url "google" %}" >Log using Gmail</a>
+    </div>
+{% endblock content %}

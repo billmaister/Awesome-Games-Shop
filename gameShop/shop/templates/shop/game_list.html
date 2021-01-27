@@ -1,0 +1,53 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+
+<style>
+  h2 {
+    color: tomato;
+    padding-left: 40px;
+  }
+
+  li {
+      width: 300px;
+      border: 1px solid #000;
+      margin: 10px;
+      padding: 5px;
+  }
+
+  .gameList {
+    padding-left: 55px;
+    list-style-type: none;
+  }
+
+  
+
+</style>
+
+
+
+{% block extrainfo %}
+    <h2>Available games:</h2>
+{% endblock extrainfo %}
+
+{% if user.is_authenticated and user.profile.is_dev %}
+    <a href="{% url 'game-create' %}">Add a new game</a>
+{% endif %}
+
+
+<ul class="gameList">
+{% for game in object_list %}
+    <li class="game">
+        <h2>{{ game.name }}</h2>
+        <h5>By: {{ game.author.username }}</h5>
+        <h4>Price: {{ game.price }}€</h4>
+        <a href="{% url 'game-detail' game.pk %}">Details</a>
+        {% if game in owned_games %}
+            <a href="{% url 'play-game' game.pk %}">Play</a>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+
+
+{% endblock content %}

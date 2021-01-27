@@ -1,0 +1,11 @@
+{% extends "shop/base.html" %}
+{% block content %}
+        <form method="POST">
+            {% csrf_token %}
+            <h2>Are you sure you want to delete the game "{{ object.name }}"</h2>
+            <div>
+                <button type="submit">Delete</button>
+                <a href="{% url 'game-detail' object.pk %}">Cancel</a>
+            </div>
+        </form>
+{% endblock content %}

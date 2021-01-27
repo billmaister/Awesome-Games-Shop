@@ -1,0 +1,25 @@
+{% extends "shop/base.html" %}
+
+{% block content %}
+    <h2>Game info:</h2>
+
+    <div>{{ object.name }}</div>
+    <p>{{ object.description }}</p>
+    <div>{{ object.price }} €</div>
+    <div>This game has been played {{ object.times_played }} times.</div>
+    {% if user == game.author %}
+        <div>Your game has been purchased by {{ times_purchased }} users.</div>
+    {% endif %}
+    <div>
+        {% if user == object.author %}
+            <a href="{% url 'game-update' object.pk %}">Edit</a>
+            <a href="{% url 'game-delete' object.pk %}">Delete</a>
+        {% endif %}
+        {% if game_purchased or user == object.author %}
+            <a href="{% url 'play-game' object.pk %}">Play</a>
+        {% else %}
+            <a href="{% url 'buy-confirm' object.pk %}">Buy</a>
+        {% endif %}
+    </div>
+
+{% endblock content%}

@@ -1,0 +1,11 @@
+{% extends "shop/game_list.html" %}
+
+{% block extrainfo %}
+    <h2>Your best selling games:</h2>
+    {% for game in best_selling %}
+        <h3>{{game.name}}:</h3>
+        <h5>Bought by {{game.get_times_sold}} users. Played {{ game.times_played }} times.</h5>
+    {% endfor %}
+
+    <h2>My inventory:</h2>
+{% endblock extrainfo %}
