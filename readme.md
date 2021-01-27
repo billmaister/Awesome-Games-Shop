@@ -1,4 +1,5 @@
-Original project plan can be found here
+Original project plan can be found [here](https://github.com/billmaister/Awesome-Games-Shop/blob/master/FinalReport.pdf)
+
 Working App in Heroku can be found [here](https://mostawesomegames.herokuapp.com/home/)
 
 ## 1. Team Members
